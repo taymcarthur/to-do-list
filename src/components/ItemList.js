@@ -1,4 +1,5 @@
 import React from 'react'
+import ListItem from './ListItem'
 
 export default React.createClass({
 	getDefaultProps() {
@@ -6,18 +7,21 @@ export default React.createClass({
 			items: []
 		}
 	},
+	handleClick() {
+		alert("hi")
+
+	},
 	render() {
 		return (
+			<div>
+				<button onClick={this.handleClick}>{this.props.foo}</button>
+
 			<ul>
 				{this.props.items.map(item=>(
-					<li>	
-						<input type="checkbox" id={item.id}/>
-						<label htmlFor={item.id}>{item.title}</label>
-						<button>X</button>
-					</li>
+					<ListItem key={item.id} destroyItem={this.props.destroyItem} {...item} />
 				))}
 			</ul>
+			</div>
 		)
 	}
-})
-
+}) 
